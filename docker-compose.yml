@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  no-ip-updater:
+    restart: always
+    build:
+      context: . 
+    env_file:
+      - ./.env
+    container_name: no-ip-updater
