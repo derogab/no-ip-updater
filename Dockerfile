@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 RUN pip install requests schedule python-dotenv
 
 # Copy app 
-COPY app.py .
+COPY app.py ./
 
 # Run the app
 CMD [ "python", "-u", "./app.py" ]
