@@ -36,7 +36,7 @@ def main():
     # Set default frequency if custom is not set
     if not MINUTES:
         MINUTES = 15
-        print('[DEBUG] Custom frequency is not set. Setting default (15).')
+        print('[WARN] Custom frequency is not set. Setting default (15).')
     # Convert to integer
     MINUTES = int(MINUTES)
     # Log the frequency
