@@ -19,6 +19,10 @@ def update_ip():
     USER = os.getenv('NOIP_USER')
     PASSWORD = os.environ.get('NOIP_PASSWORD')
     HOSTNAME = os.environ.get('NOIP_HOSTNAME')
+    # Check if the credentials are set
+    if not USER or not PASSWORD or not HOSTNAME:
+        print('[ERROR] No-IP credentials are not set.')
+        return
     # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
