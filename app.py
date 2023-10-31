@@ -13,16 +13,17 @@ from datetime import datetime
 load_dotenv()
 
 def update_ip():
+    # Get current time
+    date = datetime.now()
+    # Get the No-IP credentials
+    USER = os.getenv('NOIP_USER')
+    PASSWORD = os.environ.get('NOIP_PASSWORD')
+    HOSTNAME = os.environ.get('NOIP_HOSTNAME')
+    # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
         r = requests.get('https://api.ipify.org/?format=json')
         ip = r.json()['ip']
-        # Get current time
-        date = datetime.now()
-        # Get the No-IP credentials
-        USER = os.getenv('NOIP_USER')
-        PASSWORD = os.environ.get('NOIP_PASSWORD')
-        HOSTNAME = os.environ.get('NOIP_HOSTNAME')
         # Update
         r = requests.get("https://{}:{}@dynupdate.no-ip.com/nic/update?hostname={}&myip={}".format(USER, PASSWORD, HOSTNAME, ip))
         # Log
