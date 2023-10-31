@@ -31,10 +31,16 @@ def update_ip():
         print('[ERROR] ', e)
 
 def main():
-    # Get the frequency or set default
-    MINUTES = int(os.getenv('FREQUENCY_MINUTES')) or 15
+    # Get the frequency
+    MINUTES = os.getenv('FREQUENCY_MINUTES')
+    # Set default frequency if custom is not set
+    if not MINUTES:
+        MINUTES = 15
+        print('[DEBUG] Custom frequency is not set. Setting default (15).')
+    # Convert to integer
+    MINUTES = int(MINUTES)
     # Log the frequency
-    print('[DEBUG] Ready to update every ', str(MINUTES), ' minute(s).')
+    print('[INFO] Ready to update every ', str(MINUTES), ' minute(s).')
     # Cron Tab
     schedule.every(MINUTES).minutes.do(update_ip)
     # App started
