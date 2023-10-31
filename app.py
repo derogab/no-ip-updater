@@ -13,15 +13,15 @@ from datetime import datetime
 load_dotenv()
 
 # Enable debug
-DEBUG = os.environ.get('ENABLE_DEBUG')
+DEBUG = os.getenv('ENABLE_DEBUG')
 
 def update_ip():
     # Get current time
     date = datetime.now()
     # Get the No-IP credentials
     USER = os.getenv('NOIP_USER')
-    PASSWORD = os.environ.get('NOIP_PASSWORD')
-    HOSTNAME = os.environ.get('NOIP_HOSTNAME')
+    PASSWORD = os.getenv('NOIP_PASSWORD')
+    HOSTNAME = os.getenv('NOIP_HOSTNAME')
     # Check if the credentials are set
     if not USER or not PASSWORD or not HOSTNAME:
         print('[ERROR] No-IP credentials are not set.')
