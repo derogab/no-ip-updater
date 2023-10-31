@@ -12,6 +12,9 @@ from datetime import datetime
 # Load environments from .env
 load_dotenv()
 
+# Enable debug
+DEBUG = os.environ.get('ENABLE_DEBUG')
+
 def update_ip():
     # Get current time
     date = datetime.now()
@@ -23,6 +26,9 @@ def update_ip():
     if not USER or not PASSWORD or not HOSTNAME:
         print('[ERROR] No-IP credentials are not set.')
         return
+    # Log
+    if DEBUG:
+        print('[DEBUG] Auth: ', HOSTNAME, '/', USER)
     # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
