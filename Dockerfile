@@ -4,7 +4,8 @@ FROM python:3-slim
 WORKDIR /usr/src/app
 
 # Install app dependencies
-RUN pip install requests schedule python-dotenv
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
 
 # Copy app 
 COPY app.py ./
