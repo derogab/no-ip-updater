@@ -42,7 +42,7 @@ def update_ip():
         r = requests.get("https://{}:{}@dynupdate.no-ip.com/nic/update?hostname={}&myip={}".format(USER, PASSWORD, HOSTNAME, ip))
         # Log
         print('[INFO] IP (' + str(ip) + ') updated at ' + str(date))
-    except e:
+    except Exception as e:
         print('[ERROR] ', e)
 
 def main():
