@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Build & Release
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -7,13 +7,13 @@ name: Build & Push Docker Image
 
 on:
   push:
-    # Update the image after new push
+    # Publish `master` image.
     branches:
       - master
 
-  schedule:
-    # Update the image every day
-    - cron:  '0 0 * * *' # * is a special character in YAML so you have to quote this string
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
 
   # Run tests for any PRs.
   pull_request:
@@ -30,22 +30,19 @@ jobs:
 
   # Run tests.
   test:
+    name: Run tests
+    
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v5
 
       - name: Run tests
-        run: |
-          if [ -f docker-compose.test.yml ]; then
-            docker-compose --file docker-compose.test.yml build
-            docker-compose --file docker-compose.test.yml run sut
-          else
-            docker build . --file Dockerfile
-          fi
+        run: docker build . --file Dockerfile
 
   # Push image.
   push:
+    name: Build and push docker image
 
     # Ensure test job passes before pushing image.
     needs: test
@@ -91,6 +88,13 @@ jobs:
           images: |
             ${{ env.IMAGE_NAME }}
             ${{ env.GITHUB_REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}.{{minor}}.{{patch}}
+            type=raw,value=beta,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       - name: Build and push Docker image
@@ -103,3 +107,22 @@ jobs:
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.GITHUB_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
+
+  # Release the TAG to GitHub.
+  release:
+    name: Release pushed tag
+    needs: push # Ensure push job passes before releasing the tag.
+    if: startsWith(github.ref, 'refs/tags/') # Only if the TAG is pushed.
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "$tag" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="v${tag#v}" \
+              --generate-notes
