@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Build & Release
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -30,6 +30,8 @@ jobs:
 
   # Run tests.
   test:
+    name: Run tests
+    
     runs-on: ubuntu-latest
 
     steps:
@@ -40,6 +42,7 @@ jobs:
 
   # Push image.
   push:
+    name: Build and push docker image
 
     # Ensure test job passes before pushing image.
     needs: test
