@@ -58,6 +58,8 @@ def main():
     print('[INFO] Ready to update every ', str(MINUTES), ' minute(s).')
     # Cron Tab
     schedule.every(MINUTES).minutes.do(update_ip)
+    # First run at startup
+    update_ip()
     # App started
     print('[INFO] App started.')
     # Run the script
