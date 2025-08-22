@@ -36,7 +36,7 @@ def update_ip():
     # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
-        r = requests.get('https://api.ipify.org/?format=json')
+        r = requests.get('http://ipv4.iplocation.net')
         ip = r.json()['ip']
         # Update
         r = requests.get("https://{}:{}@dynupdate.no-ip.com/nic/update?hostname={}&myip={}".format(USER, PASSWORD, HOSTNAME, ip))
