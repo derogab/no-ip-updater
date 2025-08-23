@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./.github/assets/logo.png" width="140px" style="border-radius: 50%;">
+  <img src="./.github/assets/logo.png" width="140px">
 </p>
 <h1 align="center">NO-IP Updater</h1>
 <p align="center">A simple script to auto update current IP address to a No-IP domain</p>
