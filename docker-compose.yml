@@ -3,7 +3,9 @@ version: '3'
 services:
   no-ip-updater:
     container_name: no-ip-updater
-    image: ghcr.io/derogab/no-ip-updater
+    image: ghcr.io/derogab/no-ip-updater:latest
+    build:
+      context: .
     restart: always
     env_file:
-      - ./.env
+      - .env
