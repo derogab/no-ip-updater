@@ -9,7 +9,7 @@
     </a>
 </p>
 
-## Configs
+### Configs
 Copy `.env.template` to `.env`. Then edit `.env` with own configs.
 
 | Variable           | Description                                                                 | Default |
@@ -21,10 +21,25 @@ Copy `.env.template` to `.env`. Then edit `.env` with own configs.
 | `ENABLE_DEBUG`     | Enable debug logging (`1` or `true` to enable, otherwise disables)          | -       |
 | `TZ`               | Time zone for the container (optional, e.g., `UTC`, `Europe/Rome`)          | UTC     |
 
-## Start
+### Start
 ```
 docker-compose up -d
 ```
 
-## Credits
-[no-ip-updater](https://github.com/derogab/no-ip-updater) is made with ♥  by [derogab](https://github.com/derogab).
+### Credits
+[no-ip-updater](https://github.com/derogab/no-ip-updater) is made with ♥  by [derogab](https://github.com/derogab) and it's released under the [MIT license](./LICENSE).
+
+### Contributors
+
+<a href="https://github.com/derogab/no-ip-updater/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=derogab/no-ip-updater" />
+</a>
+
+### Tip
+If you like this project or directly benefit from it, please consider buying me a coffee:  
+🔗 `bc1qd0qatgz8h62uvnr74utwncc6j5ckfz2v2g4lef`  
+⚡️ `derogab@sats.mobi`  
+💶 [Sponsor on GitHub](https://github.com/sponsors/derogab)
+
+### Stargazers over time
+[![Stargazers over time](https://starchart.cc/derogab/no-ip-updater.svg?variant=adaptive)](https://starchart.cc/derogab/no-ip-updater)
