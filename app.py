@@ -31,7 +31,7 @@ def update_ip():
         logger.error('No-IP credentials are not set.')
         return
     # Log
-    logger.debug('Auth: ', HOSTNAME, '/', USER)
+    logger.debug('No-IP Auth: ' + HOSTNAME + '/' + USER)
     # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
@@ -42,7 +42,7 @@ def update_ip():
         # Log
         logger.info('IP (' + str(ip) + ') updated at ' + str(date))
     except Exception as e:
-        logger.error('Error: ', e)
+        logger.error('Error: ' + e)
 
 # Main function
 def main():
