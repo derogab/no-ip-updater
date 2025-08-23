@@ -11,7 +11,8 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 # Set up logging
-logging_level = logging.DEBUG if os.getenv('ENABLE_DEBUG') == "1" or os.getenv('ENABLE_DEBUG').lower() == "true" else logging.INFO
+DEBUG = os.getenv('ENABLE_DEBUG')
+logging_level = logging.DEBUG if DEBUG == "1" or DEBUG.lower() == "true" else logging.INFO
 logging.basicConfig(format="%(levelname)s\t%(message)s", level=logging_level)
 logger = logging.getLogger(__name__)
 
