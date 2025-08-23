@@ -9,8 +9,17 @@
     </a>
 </p>
 
-## Config
-Copy `.env.template` to `.env`. Then edit `.env` with own config.
+## Configs
+Copy `.env.template` to `.env`. Then edit `.env` with own configs.
+
+| Variable           | Description                                                                 | Default |
+|--------------------|-----------------------------------------------------------------------------|---------|
+| `NOIP_USER`        | Your No-IP account username (required)                                      | -       |
+| `NOIP_PASSWORD`    | Your No-IP account password (required)                                      | -       |
+| `NOIP_HOSTNAME`    | The hostname (domain) you want to update on No-IP (required)                | -       |
+| `FREQUENCY_MINUTES`| How often (in minutes) to check and update the IP address                   | 15      |
+| `ENABLE_DEBUG`     | Enable debug logging (`1` or `true` to enable, otherwise disables)          | -       |
+| `TZ`               | Time zone for the container (optional, e.g., `UTC`, `Europe/Rome`)          | UTC     |
 
 ## Start
 ```
