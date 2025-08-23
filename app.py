@@ -58,10 +58,10 @@ def main():
     logger.info('Ready to update every ' + str(MINUTES) + ' minute(s).')
     # Cron Tab
     schedule.every(MINUTES).minutes.do(update_ip)
-    # First run at startup
-    update_ip()
     # App started
     logger.debug('App started.')
+    # First run at startup
+    update_ip()
     # Run the script
     while True:
         schedule.run_pending()
