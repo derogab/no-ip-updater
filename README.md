@@ -1,5 +1,8 @@
+<p align="center">
+  <img src="./.github/assets/logo.png" width="140px" style="border-radius: 50%;">
+</p>
 <h1 align="center">NO-IP Updater</h1>
-<h3 align="center">A simple script to auto update current IP address to a No-IP domain</h3>
+<p align="center">A simple script to auto update current IP address to a No-IP domain</p>
 <p align="center">
     <a href="https://hub.docker.com/r/derogab/no-ip-updater">
         <img src="https://img.shields.io/docker/pulls/derogab/no-ip-updater?label=Downloads&logo=docker" alt="Docker Pulls">
