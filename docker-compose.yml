@@ -1,4 +1,4 @@
-version: '3'
+name: no-ip-updater
 
 services:
   no-ip-updater:

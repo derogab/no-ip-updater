@@ -25,8 +25,13 @@ Copy `.env.template` to `.env`. Then edit `.env` with own configs.
 | `TZ`               | Time zone for the container (optional, e.g., `UTC`, `Europe/Rome`)          | UTC     |
 
 ### Start
+To start the No-IP updater, simply run:
 ```
-docker-compose up -d
+docker compose up -d
+```
+or rebuild from source locally:
+```
+docker compose up -d --build
 ```
 
 ### Credits
