@@ -13,7 +13,7 @@ from datetime import datetime
 # Set up logging
 DEBUG = os.getenv('ENABLE_DEBUG')
 logging_level = logging.DEBUG if DEBUG == "1" or DEBUG.lower() == "true" else logging.INFO
-logging.basicConfig(format="%(levelname)s\t%(message)s", level=logging_level)
+logging.basicConfig(format="%(asctime)s\t%(levelname)s\t%(message)s", datefmt='%Y-%m-%d %H:%M:%S', level=logging_level)
 logger = logging.getLogger(__name__)
 
 # Load environments from .env
@@ -41,7 +41,7 @@ def update_ip():
         # Update
         r = requests.get("https://{}:{}@dynupdate.no-ip.com/nic/update?hostname={}&myip={}".format(USER, PASSWORD, HOSTNAME, ip))
         # Log
-        logger.info('IP (' + str(ip) + ') updated at ' + str(date))
+        logger.info('IP (' + str(ip) + ') updated.')
     except Exception as e:
         logger.error('Error: ' + e)
 

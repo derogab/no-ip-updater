@@ -1,5 +1,8 @@
+<p align="center">
+  <img src="./.github/assets/logo.png" width="140px">
+</p>
 <h1 align="center">NO-IP Updater</h1>
-<h3 align="center">A simple script to auto update current IP address to a No-IP domain</h3>
+<p align="center">A simple script to auto update current IP address to a No-IP domain</p>
 <p align="center">
     <a href="https://hub.docker.com/r/derogab/no-ip-updater">
         <img src="https://img.shields.io/docker/pulls/derogab/no-ip-updater?label=Downloads&logo=docker" alt="Docker Pulls">
@@ -9,13 +12,42 @@
     </a>
 </p>
 
-## Config
-Copy `.env.template` to `.env`. Then edit `.env` with own config.
+### Configs
+Copy `.env.template` to `.env`. Then edit `.env` with own configs.
 
-## Start
+| Variable           | Description                                                                 | Default |
+|--------------------|-----------------------------------------------------------------------------|---------|
+| `NOIP_USER`        | Your No-IP account username (required)                                      | -       |
+| `NOIP_PASSWORD`    | Your No-IP account password (required)                                      | -       |
+| `NOIP_HOSTNAME`    | The hostname (domain) you want to update on No-IP (required)                | -       |
+| `FREQUENCY_MINUTES`| How often (in minutes) to check and update the IP address                   | 15      |
+| `ENABLE_DEBUG`     | Enable debug logging (`1` or `true` to enable, otherwise disables)          | -       |
+| `TZ`               | Time zone for the container (optional, e.g., `UTC`, `Europe/Rome`)          | UTC     |
+
+### Start
+To start the No-IP updater, simply run:
 ```
-docker-compose up -d
+docker compose up -d
+```
+or rebuild from source locally:
+```
+docker compose up -d --build
 ```
 
-## Credits
-[no-ip-updater](https://github.com/derogab/no-ip-updater) is made with ♥  by [derogab](https://github.com/derogab).
+### Credits
+[no-ip-updater](https://github.com/derogab/no-ip-updater) is made with ♥  by [derogab](https://github.com/derogab) and it's released under the [MIT license](./LICENSE).
+
+### Contributors
+
+<a href="https://github.com/derogab/no-ip-updater/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=derogab/no-ip-updater" />
+</a>
+
+### Tip
+If you like this project or directly benefit from it, please consider buying me a coffee:  
+🔗 `bc1qd0qatgz8h62uvnr74utwncc6j5ckfz2v2g4lef`  
+⚡️ `derogab@sats.mobi`  
+💶 [Sponsor on GitHub](https://github.com/sponsors/derogab)
+
+### Stargazers over time
+[![Stargazers over time](https://starchart.cc/derogab/no-ip-updater.svg?variant=adaptive)](https://starchart.cc/derogab/no-ip-updater)
