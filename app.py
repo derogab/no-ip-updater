@@ -4,11 +4,21 @@
 import os
 import time
 import logging
+import random
 import schedule
 import requests
 
 from dotenv import load_dotenv
 from datetime import datetime
+
+# Public IP lookup URLs
+PUBLIC_IP_URLS = [
+    'https://api.ipify.org?format=json',
+    'https://api-ipv4.ip.sb/jsonip',
+    'https://ipv4.jsonip.com',
+    'https://api4.my-ip.io/v2/ip.json',
+    'https://4.ident.me/json',
+]
 
 # Set up logging
 DEBUG = os.getenv('ENABLE_DEBUG')
@@ -36,8 +46,18 @@ def update_ip():
     # Try to get the IP and update the data on No-IP
     try:
         # Get the public ip
-        r = requests.get('https://api.ipify.org?format=json')
-        ip = r.json()['ip']
+        ip = None
+        for url in random.sample(PUBLIC_IP_URLS, len(PUBLIC_IP_URLS)):
+            try:
+                r = requests.get(url, timeout=10)
+                r.raise_for_status()
+                ip = r.json()['ip']
+                break
+            except Exception as e:
+                logger.warning('Public IP lookup failed using ' + url + ': ' + str(e))
+        if not ip:
+            logger.error('Unable to get public IP.')
+            return
         # Update
         r = requests.get("https://{}:{}@dynupdate.no-ip.com/nic/update?hostname={}&myip={}".format(USER, PASSWORD, HOSTNAME, ip))
         # Log
