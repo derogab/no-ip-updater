@@ -10,6 +10,16 @@ updates:
       - 'derogab'
     labels:
       - 'dependencies'
+    groups:
+      github-actions-major:
+        update-types:
+          - 'major'
+      github-actions-minor:
+        update-types:
+          - 'minor'
+      github-actions-patch:
+        update-types:
+          - 'patch'
 
   # Maintain dependencies for Python
   - package-ecosystem: 'pip'
@@ -20,3 +30,13 @@ updates:
       - 'derogab'
     labels:
       - 'dependencies'
+    groups:
+      pip-minor:
+        update-types:
+          - 'minor'
+      pip-patch:
+        update-types:
+          - 'patch'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
